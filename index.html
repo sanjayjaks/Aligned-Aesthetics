@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aligned Aesthetics — Graphics · Websites · Designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <svg class="nav-logo-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(50,50)">
+          <g stroke="#C8A84B" stroke-width="2.5" fill="none" stroke-linecap="round">
+            <path d="M0,-8 C-6,-18 -6,-30 0,-36"/><path d="M0,-8 C6,-18 6,-30 0,-36"/>
+            <path d="M0,-10 C-9,-20 -9,-32 0,-38"/><path d="M0,-10 C9,-20 9,-32 0,-38"/>
+            <path d="M8,0 C18,-6 30,-6 36,0"/><path d="M8,0 C18,6 30,6 36,0"/>
+            <path d="M10,0 C20,-9 32,-9 38,0"/><path d="M10,0 C20,9 32,9 38,0"/>
+            <path d="M0,8 C-6,18 -6,30 0,36"/><path d="M0,8 C6,18 6,30 0,36"/>
+            <path d="M0,10 C-9,20 -9,32 0,38"/><path d="M0,10 C9,20 9,32 0,38"/>
+            <path d="M-8,0 C-18,-6 -30,-6 -36,0"/><path d="M-8,0 C-18,6 -30,6 -36,0"/>
+            <path d="M-10,0 C-20,-9 -32,-9 -38,0"/><path d="M-10,0 C-20,9 -32,9 -38,0"/>
+          </g>
+          <circle cx="0" cy="0" r="6" stroke="#C8A84B" stroke-width="2" fill="none"/>
+          <circle cx="0" cy="0" r="3" fill="#C8A84B"/>
+        </g>
+      </svg>
+      <span class="nav-logo-text">Aligned Aesthetics</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <!-- Background mandala tile grid (filled by JS) -->
+    <div class="mandala-bg" id="mandala-bg"></div>
+
+    <!-- Large ambient hero mandala -->
+    <div class="hero-mandala-wrap">
+      <svg id="hero-mandala" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(200,200)">
+          <g class="rotate-cw">
+            <g stroke="#C8A84B" stroke-width="1.5" fill="none" stroke-linecap="round">
+              <path d="M0,-20 C-18,-45 -18,-80 0,-100"/><path d="M0,-20 C18,-45 18,-80 0,-100"/>
+              <path d="M0,-24 C-24,-52 -24,-88 0,-110"/><path d="M0,-24 C24,-52 24,-88 0,-110"/>
+              <path d="M20,0 C45,-18 80,-18 100,0"/><path d="M20,0 C45,18 80,18 100,0"/>
+              <path d="M24,0 C52,-24 88,-24 110,0"/><path d="M24,0 C52,24 88,24 110,0"/>
+              <path d="M0,20 C-18,45 -18,80 0,100"/><path d="M0,20 C18,45 18,80 0,100"/>
+              <path d="M0,24 C-24,52 -24,88 0,110"/><path d="M0,24 C24,52 24,88 0,110"/>
+              <path d="M-20,0 C-45,-18 -80,-18 -100,0"/><path d="M-20,0 C-45,18 -80,18 -100,0"/>
+              <path d="M-24,0 C-52,-24 -88,-24 -110,0"/><path d="M-24,0 C-52,24 -88,24 -110,0"/>
+              <path d="M14,-14 C32,-45 55,-68 70,-70"/><path d="M14,-14 C45,-32 68,-55 70,-70"/>
+              <path d="M14,14 C32,45 55,68 70,70"/><path d="M14,14 C45,32 68,55 70,70"/>
+              <path d="M-14,-14 C-32,-45 -55,-68 -70,-70"/><path d="M-14,-14 C-45,-32 -68,-55 -70,-70"/>
+              <path d="M-14,14 C-32,45 -55,68 -70,70"/><path d="M-14,14 C-45,32 -68,55 -70,70"/>
+            </g>
+          </g>
+          <g class="rotate-ccw">
+            <circle cx="0" cy="0" r="16" stroke="#C8A84B" stroke-width="1.5" fill="none"/>
+            <circle cx="0" cy="0" r="30" stroke="#8B6914" stroke-width="0.8" fill="none" stroke-dasharray="4 6"/>
+            <circle cx="0" cy="0" r="55" stroke="#8B6914" stroke-width="0.6" fill="none" stroke-dasharray="2 8"/>
+            <circle cx="0" cy="0" r="80" stroke="#8B6914" stroke-width="0.5" fill="none" stroke-dasharray="1 10"/>
+          </g>
+          <circle cx="0" cy="0" r="8" stroke="#C8A84B" stroke-width="2" fill="none"/>
+          <circle cx="0" cy="0" r="4" fill="#C8A84B"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-eyebrow">Designing Brands · Crafting Experiences</div>
+
+    <svg class="hero-logo-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(60,60)">
+        <g class="rotate-cw-slow">
+          <g stroke="#C8A84B" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M0,-12 C-8,-26 -8,-44 0,-52"/><path d="M0,-12 C8,-26 8,-44 0,-52"/>
+            <path d="M0,-15 C-12,-30 -12,-48 0,-58"/><path d="M0,-15 C12,-30 12,-48 0,-58"/>
+            <path d="M12,0 C26,-8 44,-8 52,0"/><path d="M12,0 C26,8 44,8 52,0"/>
+            <path d="M15,0 C30,-12 48,-12 58,0"/><path d="M15,0 C30,12 48,12 58,0"/>
+            <path d="M0,12 C-8,26 -8,44 0,52"/><path d="M0,12 C8,26 8,44 0,52"/>
+            <path d="M0,15 C-12,30 -12,48 0,58"/><path d="M0,15 C12,30 12,48 0,58"/>
+            <path d="M-12,0 C-26,-8 -44,-8 -52,0"/><path d="M-12,0 C-26,8 -44,8 -52,0"/>
+            <path d="M-15,0 C-30,-12 -48,-12 -58,0"/><path d="M-15,0 C-30,12 -48,12 -58,0"/>
+          </g>
+        </g>
+        <circle cx="0" cy="0" r="10" stroke="#C8A84B" stroke-width="2.5" fill="none"/>
+        <circle cx="0" cy="0" r="5" fill="#C8A84B"/>
+      </g>
+    </svg>
+
+    <h1 class="hero-title">Aligned<br/><em>Aesthetics</em></h1>
+    <p class="hero-sub">Graphics &nbsp;·&nbsp; Websites &nbsp;·&nbsp; Designs</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">We are a full-service creative agency crafting visual identities and digital experiences that captivate audiences and elevate brands to their highest potential.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#portfolio" class="btn-outline">View Our Work</a>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-strip">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section id="about-section">
+    <div id="about">
+      <div class="about-copy reveal">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">A Studio Built on<br/><em>Purpose & Precision</em></h2>
+        <div class="gold-rule"></div>
+        <p>Aligned Aesthetics is a creative agency where artistry meets strategy. Founded on the belief that exceptional design isn't just visual — it's a conversation between brand and audience.</p>
+        <p>We work with businesses that understand the power of a strong visual identity, partnering closely to translate their vision into experiences that resonate, convert, and endure.</p>
+        <div style="margin-top:36px;">
+          <a href="#contact" class="btn-primary">Start a Conversation</a>
+        </div>
+      </div>
+      <div class="about-stats reveal" style="transition-delay:0.2s;">
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Services Offered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Client Focus</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Creative Possibilities</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">01</div>
+          <div class="stat-label">Brand, Fully Aligned</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="services-inner">
+      <div class="services-header reveal">
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title">Our <em>Creative</em> Services</h2>
+      </div>
+      <div class="services-grid">
+
+        <!-- Video Editing -->
+        <div class="service-card reveal">
+          <span class="service-number">01</span>
+          <svg class="service-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="12" width="38" height="28" rx="2" stroke="#C8A84B" stroke-width="1.5"/>
+            <path d="M42 22l10-6v24l-10-6V22z" stroke="#C8A84B" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="12" y1="20" x2="30" y2="20" stroke="#8B6914" stroke-width="1.5"/>
+            <line x1="12" y1="26" x2="24" y2="26" stroke="#8B6914" stroke-width="1.5"/>
+            <circle cx="16" cy="33" r="3" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="4" y1="8" x2="52" y2="8" stroke="#8B6914" stroke-width="1" stroke-dasharray="3 4"/>
+          </svg>
+          <h3 class="service-title">Video<br/><em>Editing</em></h3>
+          <p class="service-desc">Cinematic storytelling through expert post-production. From brand films and reels to AI-generated content and social media cuts — we make every frame count.</p>
+          <div class="service-tags">
+            <span class="tag">Brand Films</span>
+            <span class="tag">Reels & Shorts</span>
+            <span class="tag">AI Video</span>
+            <span class="tag">Motion Titles</span>
+            <span class="tag">Colour Grade</span>
+          </div>
+        </div>
+
+        <!-- Graphic Design -->
+        <div class="service-card reveal" style="transition-delay:0.15s;">
+          <span class="service-number">02</span>
+          <svg class="service-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="22" stroke="#C8A84B" stroke-width="1.5"/>
+            <circle cx="28" cy="28" r="8" stroke="#8B6914" stroke-width="1.5"/>
+            <line x1="28" y1="6" x2="28" y2="20" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="28" y1="36" x2="28" y2="50" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="6" y1="28" x2="20" y2="28" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="36" y1="28" x2="50" y2="28" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="12" y1="12" x2="22" y2="22" stroke="#8B6914" stroke-width="1"/>
+            <line x1="34" y1="34" x2="44" y2="44" stroke="#8B6914" stroke-width="1"/>
+          </svg>
+          <h3 class="service-title">Graphic<br/><em>Design</em></h3>
+          <p class="service-desc">Visual identities that speak before words do. We craft logos, brand systems, print collateral, and social assets that align your brand with its audience.</p>
+          <div class="service-tags">
+            <span class="tag">Logo & Identity</span>
+            <span class="tag">Brand Kits</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Print Design</span>
+            <span class="tag">Posters</span>
+          </div>
+        </div>
+
+        <!-- Web / App Dev -->
+        <div class="service-card reveal" style="transition-delay:0.3s;">
+          <span class="service-number">03</span>
+          <svg class="service-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="48" height="34" rx="3" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="4" y1="16" x2="52" y2="16" stroke="#8B6914" stroke-width="1"/>
+            <circle cx="10" cy="12" r="1.5" fill="#C8A84B"/>
+            <circle cx="16" cy="12" r="1.5" fill="#8B6914"/>
+            <circle cx="22" cy="12" r="1.5" fill="#8B6914" opacity="0.4"/>
+            <path d="M16 26l-6 4 6 4" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M26 24l-4 12" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M30 26l6 4-6 4" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="18" y1="46" x2="38" y2="46" stroke="#C8A84B" stroke-width="1.5"/>
+            <line x1="28" y1="42" x2="28" y2="46" stroke="#8B6914" stroke-width="1.5"/>
+          </svg>
+          <h3 class="service-title">Web & App<br/><em>Development</em></h3>
+          <p class="service-desc">Digital experiences engineered for performance and crafted for beauty. From landing pages to full-scale web applications and mobile experiences.</p>
+          <div class="service-tags">
+            <span class="tag">Web Design</span>
+            <span class="tag">Landing Pages</span>
+            <span class="tag">Web Apps</span>
+            <span class="tag">Mobile Apps</span>
+            <span class="tag">UI/UX</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="process-inner">
+      <div class="reveal">
+        <span class="section-label">How We Work</span>
+        <h2 class="section-title">Our <em>Creative</em> Process</h2>
+      </div>
+      <div class="process-steps">
+        <div class="process-line"></div>
+        <div class="process-step">
+          <div class="step-dot">I</div>
+          <div class="step-content">
+            <h3>Discovery & Brief</h3>
+            <p>We begin by deeply understanding your brand, goals, audience, and the story you want to tell. Every great project starts with the right questions.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">II</div>
+          <div class="step-content">
+            <h3>Strategy & Concept</h3>
+            <p>Our team develops creative concepts rooted in strategy. We explore directions, moodboards, and reference points before committing to execution.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">III</div>
+          <div class="step-content">
+            <h3>Design & Production</h3>
+            <p>With a clear vision approved, we move into full creative production — designing, editing, coding, and refining with meticulous attention to detail.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">IV</div>
+          <div class="step-content">
+            <h3>Review & Refinement</h3>
+            <p>We share progress, gather feedback, and iterate until the work is aligned with your expectations and exceeds them.</p>
+          </div>
+        </div>
+        <div class="process-step process-step--last">
+          <div class="step-dot">V</div>
+          <div class="step-content">
+            <h3>Delivery & Beyond</h3>
+            <p>Final deliverables are handed over in all required formats. We stay available to support, scale, and evolve as your brand grows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section id="portfolio">
+    <div class="portfolio-inner">
+      <div class="reveal portfolio-header">
+        <span class="section-label">Our Work</span>
+        <h2 class="section-title">Selected <em>Projects</em></h2>
+        <p class="portfolio-subtext">Portfolio coming soon — watch this space.</p>
+      </div>
+      <div class="portfolio-grid reveal" style="transition-delay:0.2s;">
+        <div class="portfolio-item">
+          <div class="portfolio-placeholder">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="28" height="28" rx="2"/><circle cx="13" cy="13" r="3"/><path d="M4 24l8-8 6 6 4-4 10 10"/></svg>
+            <span>Graphic Design</span>
+          </div>
+          <div class="portfolio-overlay"><span>Brand Identity</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-placeholder">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="8" width="24" height="18" rx="2"/><path d="M26 14l8-4v16l-8-4V14z"/></svg>
+            <span>Video Editing</span>
+          </div>
+          <div class="portfolio-overlay"><span>Brand Film</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-placeholder">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="4" width="32" height="24" rx="2"/><line x1="2" y1="10" x2="34" y2="10"/><line x1="12" y1="28" x2="24" y2="28"/></svg>
+            <span>Web Development</span>
+          </div>
+          <div class="portfolio-overlay"><span>Website Design</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-placeholder">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="10" y="2" width="16" height="32" rx="3"/><line x1="16" y1="28" x2="20" y2="28"/></svg>
+            <span>App Design</span>
+          </div>
+          <div class="portfolio-overlay"><span>Mobile App</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="contact-bg-glow"></div>
+    <div class="contact-inner reveal">
+      <span class="section-label">Let's Create Together</span>
+      <h2 class="section-title contact-title">Ready to <em>Align</em><br/>Your Brand?</h2>
+      <p class="contact-desc">Whether you have a clear vision or just a spark of an idea — we'd love to hear from you. Let's build something beautiful together.</p>
+      <a href="mailto:hello@alignedaesthetics.in" class="btn-primary">Begin Your Project</a>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-val">hello@alignedaesthetics.in</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Services</div>
+          <div class="contact-item-val">Graphics · Web · Video</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Based In</div>
+          <div class="contact-item-val">India &amp; Beyond</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div>
+      <div class="footer-logo">Aligned Aesthetics</div>
+      <div class="footer-tagline">Designing Brands. Crafting Experiences.</div>
+    </div>
+    <div class="footer-copy">© 2025 Aligned Aesthetics. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
