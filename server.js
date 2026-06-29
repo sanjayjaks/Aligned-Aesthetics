@@ -8,24 +8,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const args = process.argv.slice(2);
-const roleIndex = args.indexOf('--role');
 const portIndex = args.indexOf('--port');
 
-const role = roleIndex >= 0 ? args[roleIndex + 1] : 'client';
-const port = portIndex >= 0 ? Number(args[portIndex + 1]) : role === 'admin' ? 3001 : 3000;
+const port = process.env.PORT || (portIndex >= 0 ? Number(args[portIndex + 1]) : 3000);
 
-const PUBLIC_FILES = new Set([
+const ALLOWED_FILES = new Set([
   '/',
   '/index.html',
-  '/style.css',
-  '/script.js',
-  '/favicon.ico'
-]);
-
-const ADMIN_FILES = new Set([
-  '/',
   '/admin',
   '/admin.html',
+  '/style.css',
+  '/script.js',
   '/favicon.ico'
 ]);
 
@@ -315,23 +308,21 @@ function handleStatic(request, response) {
     return false;
   }
 
-  const fileRoot = role === 'admin' ? '/admin.html' : '/index.html';
-  const allowedFiles = role === 'admin' ? ADMIN_FILES : PUBLIC_FILES;
-
   let targetPath = pathname;
 
   if (pathname === '/' || pathname === '') {
-    targetPath = fileRoot;
+    targetPath = '/index.html';
+  } else if (pathname === '/admin') {
+    targetPath = '/admin.html';
   }
 
-  if (!allowedFiles.has(targetPath) && !targetPath.startsWith('/images/')) {
+  if (!ALLOWED_FILES.has(targetPath) && !targetPath.startsWith('/images/')) {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Not found');
     return true;
   }
 
-  const normalizedPath = targetPath === '/' ? fileRoot : targetPath;
-  const filePath = path.join(__dirname, normalizedPath.replace(/^\//, ''));
+  const filePath = path.join(__dirname, targetPath.replace(/^\//, ''));
   serveFile(response, filePath, getContentType(filePath));
   return true;
 }
@@ -353,6 +344,6 @@ const server = http.createServer(async function (request, response) {
 });
 
 server.listen(port, function () {
-  const label = role === 'admin' ? 'admin' : 'client';
-  console.log('Aligned Asthetics ' + label + ' server running at http://localhost:' + port);
+  console.log('Aligned Asthetics server running at http://localhost:' + port);
 });
+
