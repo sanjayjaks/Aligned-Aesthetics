@@ -24,6 +24,9 @@ export default async function handler(request, response) {
     const messages = await loadClientMessages();
     sendJson(response, 200, { ok: true, messages });
   } catch (error) {
-    sendJson(response, 500, { ok: false, error: 'Unable to load messages right now.' });
+    sendJson(response, 500, {
+      ok: false,
+      error: error.message || 'Unable to load messages right now.'
+    });
   }
 }

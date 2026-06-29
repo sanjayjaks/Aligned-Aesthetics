@@ -611,7 +611,11 @@
 
         showNotice(loginNotice, result.source === 'local' ? 'Signed in locally for browser testing.' : 'Signed in successfully.', 'success');
         switchToDashboard();
-        await loadMessages();
+        try {
+          await loadMessages();
+        } catch (error) {
+          showNotice(dashboardNotice, error.message || 'Unable to load requests.', 'error');
+        }
       } catch (error) {
         showNotice(loginNotice, error.message || 'Unable to sign in.', 'error');
       }
@@ -648,7 +652,9 @@
     checkSession()
       .then(function (isSignedIn) {
         if (isSignedIn) {
-          return loadMessages();
+          return loadMessages().catch(function (error) {
+            showNotice(dashboardNotice, error.message || 'Unable to load requests.', 'error');
+          });
         }
       })
       .catch(function () {
