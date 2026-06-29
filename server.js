@@ -21,6 +21,15 @@ const ALLOWED_FILES = new Set([
   '/favicon.ico'
 ]);
 
+const ALLOWED_EXTENSIONS = new Set([
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.svg',
+  '.gif',
+  '.webp'
+]);
+
 const MESSAGE_STORE_DIR = path.join(__dirname, '.data');
 const MESSAGE_STORE_FILE = path.join(MESSAGE_STORE_DIR, 'messages.json');
 const ADMIN_USERNAME = 'admin';
@@ -207,6 +216,8 @@ function getContentType(filePath) {
   if (extension === '.png') return 'image/png';
   if (extension === '.jpg' || extension === '.jpeg') return 'image/jpeg';
   if (extension === '.svg') return 'image/svg+xml';
+  if (extension === '.gif') return 'image/gif';
+  if (extension === '.webp') return 'image/webp';
   return 'application/octet-stream';
 }
 
@@ -316,7 +327,10 @@ function handleStatic(request, response) {
     targetPath = '/admin.html';
   }
 
-  if (!ALLOWED_FILES.has(targetPath) && !targetPath.startsWith('/images/')) {
+  const ext = path.extname(targetPath).toLowerCase();
+  const isAllowedImage = ALLOWED_EXTENSIONS.has(ext);
+
+  if (!ALLOWED_FILES.has(targetPath) && !targetPath.startsWith('/images/') && !isAllowedImage) {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Not found');
     return true;
