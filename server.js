@@ -15,7 +15,6 @@ const port = process.env.PORT || (portIndex >= 0 ? Number(args[portIndex + 1]) :
 const ALLOWED_FILES = new Set([
   '/',
   '/index.html',
-  '/admin',
   '/admin.html',
   '/style.css',
   '/script.js',
@@ -310,9 +309,10 @@ function handleStatic(request, response) {
 
   let targetPath = pathname;
 
+  // Handle trailing slashes explicitly
   if (pathname === '/' || pathname === '') {
     targetPath = '/index.html';
-  } else if (pathname === '/admin') {
+  } else if (pathname === '/admin' || pathname === '/admin/') {
     targetPath = '/admin.html';
   }
 
