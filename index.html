@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aligned Aesthetics — Graphics · Websites · Designs</title>
+  <title>Aligned Asthetics — Graphics · Websites · Designs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -54,8 +54,10 @@
     }
 
     .nav-logo-mark {
-      width: 40px;
-      height: 40px;
+      width: 168px;
+      height: 168px;
+      display: block;
+      flex: none;
       object-fit: contain;
     }
 
@@ -168,6 +170,101 @@
       width: 100%; height: 100%; object-fit: cover;
     }
 
+    .popup-open-image {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 10px 18px;
+      border: 1px solid rgba(200, 168, 75, 0.28);
+      border-radius: 999px;
+      color: #C8A84B;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: rgba(200, 168, 75, 0.06);
+      transition: all 0.25s ease;
+    }
+
+    .popup-open-image:hover {
+      background: rgba(200, 168, 75, 0.16);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .image-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(5, 5, 5, 0.92);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .image-lightbox.open {
+      display: flex;
+    }
+
+    .image-lightbox-content {
+      position: relative;
+      width: min(1100px, 96vw);
+      max-height: 92vh;
+      border: 1px solid rgba(200, 168, 75, 0.22);
+      border-radius: 18px;
+      background: rgba(18, 18, 18, 0.96);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .image-lightbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(200, 168, 75, 0.12);
+      color: #C8A84B;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+    }
+
+    .image-lightbox-close {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #C8A84B;
+      font-size: 34px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .image-lightbox-frame {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 18px;
+    }
+
+    .image-lightbox-frame img {
+      display: block;
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
     .popup-web-link {
       display: flex; align-items: center; justify-content: center;
       width: 100%; height: 100%; text-decoration: none;
@@ -191,6 +288,21 @@
     .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(200,168,75,0.15); color: #fff; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 13px; box-sizing: border-box; }
     .form-group select option { background: #121212; color: #fff; }
     .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #C8A84B; outline: none; }
+    .form-status {
+      margin-top: 14px;
+      min-height: 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: #C8A84B;
+      text-align: center;
+    }
+    .form-status[data-state="error"] {
+      color: #d38b8b;
+    }
+    .form-status[data-state="success"] {
+      color: #9acb9f;
+    }
 
     /* ── NEW CLEAN ROW FOOTER SYSTEM ── */
     .aligned-footer-container {
@@ -252,8 +364,8 @@
 
   <nav id="navbar">
     <a href="#hero" class="nav-logo">
-      <img src="images/logo.jpeg" alt="Aligned Aesthetics Logo" class="nav-logo-mark" />
-      <span class="nav-logo-text">Aligned Aesthetics</span>
+      <img class="nav-logo-mark" src="1000409022-removebg-preview.png" alt="Aligned Asthetics logo"/>
+      <span class="nav-logo-text">Aligned Asthetics</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about-section">About</a></li>
@@ -344,7 +456,7 @@
         <span class="section-label">Who We Are</span>
         <h2 class="section-title">A Studio Built on<br/><em>Purpose & Precision</em></h2>
         <div class="gold-rule"></div>
-        <p>Aligned Aesthetics is a creative agency where artistry meets strategy. Founded on the belief that exceptional design isn't just visual — it's a conversation between brand and audience.</p>
+        <p>Aligned Asthetics is a creative agency where artistry meets strategy. Founded on the belief that exceptional design isn't just visual — it's a conversation between brand and audience.</p>
         <p>We work with businesses that understand the power of a strong visual identity, partnering closely to translate their vision into experiences that resonate, convert, and endure.</p>
         <div style="margin-top:36px;">
           <a href="#contact-form-anchor" class="btn-primary">Start a Conversation</a>
@@ -536,20 +648,32 @@
       <div class="modal-title">Graphic Design <em>Creations</em></div>
       <div class="popup-sample-grid">
         <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Miss Champa Debnath</div>
-          <div class="popup-sample-media"><img src="images/image1.jpeg" alt="Sample 1"/></div>
+          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
+          <div>
+            <div class="popup-sample-media"><img src="3.png" alt="Website design sample"/></div>
+            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('3.png', 'Website design sample')">Open Image</button>
+          </div>
         </div>
         <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Miss Champa Debnath</div>
-          <div class="popup-sample-media"><img src="images/image2.jpeg" alt="Sample 2"/></div>
+          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
+          <div>
+            <div class="popup-sample-media"><img src="4.png" alt="Poster design sample"/></div>
+            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('4.png', 'Poster design sample')">Open Image</button>
+          </div>
         </div>
         <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Miss Champa Debnath</div>
-          <div class="popup-sample-media"><img src="images/image3.jpeg" alt="Sample 3"/></div>
+          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
+          <div>
+            <div class="popup-sample-media"><img src="layout.png" alt="Instagram layout sample"/></div>
+            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('layout.png', 'Instagram layout sample')">Open Image</button>
+          </div>
         </div>
         <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Miss Champa Debnath</div>
-          <div class="popup-sample-media"><img src="images/image4.jpeg" alt="Sample 4"/></div>
+          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
+          <div>
+            <div class="popup-sample-media"><img src="logo desgin.png" alt="Logo design sample"/></div>
+            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('logo desgin.png', 'Logo design sample')">Open Image</button>
+          </div>
         </div>
       </div>
     </div>
@@ -608,8 +732,23 @@
       <div class="popup-sample-grid">
         <div class="popup-sample-item">
           <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Mr.Sanjay Jakkani</div>
-          <div class="popup-sample-media"><img src="images/image5.jpeg" alt="App Showcase Sample"/></div>
+          <div>
+            <div class="popup-sample-media"><img src="image5.jpeg" alt="App Showcase Sample"/></div>
+            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('image5.jpeg', 'App Showcase Sample')">Open Image</button>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="imageLightbox" class="image-lightbox" onclick="closeGalleryLightbox(event)">
+    <div class="image-lightbox-content">
+      <div class="image-lightbox-header">
+        <span id="imageLightboxTitle">Image Preview</span>
+        <button class="image-lightbox-close" type="button" aria-label="Close image preview" onclick="closeGalleryLightbox()">&times;</button>
+      </div>
+      <div class="image-lightbox-frame">
+        <img id="imageLightboxImg" src="" alt="Gallery preview" />
       </div>
     </div>
   </div>
@@ -628,7 +767,7 @@
       </div>
 
       <div class="highlighted-form-box" id="contact-form-anchor">
-        <form action="/api/contact" method="POST">
+        <form id="clientRequestForm" action="/api/messages" method="POST">
           <div class="form-group">
             <label>Name</label>
             <input type="text" name="client_name" placeholder="Your Name" required />
@@ -636,6 +775,10 @@
           <div class="form-group">
             <label>Email</label>
             <input type="email" name="client_email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" name="client_mobile" placeholder="Your mobile number" inputmode="tel" autocomplete="tel" required />
           </div>
           <div class="form-group">
             <label>Required Service</label>
@@ -653,8 +796,9 @@
           <div class="form-group" style="display:none;">
             <input type="hidden" name="form_timestamp" value="1719613329" />
           </div>
-          <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer;">Send Message</button>
+          <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer;">Send Request</button>
         </form>
+        <div class="form-status" id="requestFormStatus" aria-live="polite"></div>
       </div>
 
       <div class="contact-info">
@@ -677,10 +821,10 @@
   <footer>
     <div class="aligned-footer-container">
       <div class="footer-left-block">
-        © 2026 Aligned Aesthetics. All rights reserved.
+        © 2026 Aligned Asthetics. All rights reserved.
       </div>
       <div class="footer-center-block" style="padding-right: 30px; padding-left: 30px;">
-        Aligned Aesthetics
+        Aligned Asthetics
       </div>
       <div class="footer-right-block">
         Founder: Mr.Anubhav Singh | <a href="tel:+919129271121">+91 9129271121</a>
@@ -695,6 +839,41 @@
         targetModal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
+    }
+
+    function openGalleryLightbox(imageSrc, title) {
+      const lightbox = document.getElementById('imageLightbox');
+      const image = document.getElementById('imageLightboxImg');
+      const imageTitle = document.getElementById('imageLightboxTitle');
+
+      if (!lightbox || !image || !imageTitle) {
+        return;
+      }
+
+      image.src = imageSrc;
+      image.alt = title || 'Gallery preview';
+      imageTitle.textContent = title || 'Image Preview';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGalleryLightbox(event) {
+      if (event && event.target && event.target.id !== 'imageLightbox' && event.target.classList && !event.target.classList.contains('image-lightbox-close')) {
+        return;
+      }
+
+      const lightbox = document.getElementById('imageLightbox');
+      const image = document.getElementById('imageLightboxImg');
+
+      if (lightbox) {
+        lightbox.classList.remove('open');
+      }
+
+      if (image) {
+        image.src = '';
+      }
+
+      document.body.style.overflow = 'auto';
     }
 
     function closePortfolioPopup(modalId) {

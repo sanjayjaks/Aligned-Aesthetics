@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aligned Asthetics Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f5edd6;
+      --gold: #8b6914;
+      --gold-light: #c8a84b;
+      --gold-pale: #e8d49a;
+      --dark: #110b05;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-border: rgba(200, 168, 75, 0.18);
+      --danger: #cf8f8f;
+      --success: #9acb9f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(200, 168, 75, 0.14), transparent 35%),
+        linear-gradient(180deg, #120b05 0%, #0d0905 100%);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .admin-shell {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 20px;
+    }
+
+    .admin-panel {
+      width: min(1100px, 100%);
+      border: 1px solid var(--panel-border);
+      background: rgba(12, 8, 4, 0.88);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 24px 28px;
+      border-bottom: 1px solid rgba(200, 168, 75, 0.12);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .admin-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .admin-brand span {
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 10px;
+      color: var(--gold-pale);
+    }
+
+    .admin-brand strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .admin-body {
+      padding: 28px;
+    }
+
+    .admin-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr 1.5fr;
+    }
+
+    .card {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      color: rgba(245, 237, 214, 0.7);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 10px;
+    }
+
+    .field input {
+      width: 100%;
+      border: 1px solid rgba(200, 168, 75, 0.15);
+      background: rgba(0, 0, 0, 0.45);
+      color: var(--cream);
+      padding: 14px 15px;
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--gold-light);
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #120b05;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid rgba(200, 168, 75, 0.28);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .notice {
+      margin-top: 12px;
+      min-height: 20px;
+      font-size: 13px;
+      color: var(--gold-light);
+    }
+
+    .notice[data-state='error'] {
+      color: var(--danger);
+    }
+
+    .notice[data-state='success'] {
+      color: var(--success);
+    }
+
+    .message-list {
+      display: grid;
+      gap: 14px;
+      max-height: 68vh;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .message-item {
+      border: 1px solid rgba(200, 168, 75, 0.14);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .message-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .message-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream);
+    }
+
+    .message-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--gold-pale);
+      font-size: 12px;
+    }
+
+    .pill {
+      border: 1px solid rgba(200, 168, 75, 0.2);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(200, 168, 75, 0.06);
+    }
+
+    .message-body {
+      white-space: pre-wrap;
+      line-height: 1.8;
+      color: rgba(245, 237, 214, 0.82);
+      font-size: 14px;
+    }
+
+    .empty-state {
+      border: 1px dashed rgba(200, 168, 75, 0.25);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      color: rgba(245, 237, 214, 0.72);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 920px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .message-list {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .admin-header,
+      .admin-body {
+        padding: 18px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="admin-panel">
+      <header class="admin-header">
+        <div class="admin-brand">
+          <span>Private Workspace</span>
+          <strong>Aligned Asthetics Admin</strong>
+        </div>
+        <div id="sessionStatus" style="color: rgba(245, 237, 214, 0.65); font-size: 13px;">Checking access...</div>
+      </header>
+
+      <div class="admin-body">
+        <div id="loginView" class="admin-grid">
+          <div class="card">
+            <h2>Admin Login</h2>
+            <p>Use the private credentials to open the client request inbox.</p>
+            <form id="adminLoginForm">
+              <div class="field">
+                <label for="adminUsername">Username</label>
+                <input id="adminUsername" name="username" type="text" autocomplete="username" required />
+              </div>
+              <div class="field">
+                <label for="adminPassword">Password</label>
+                <input id="adminPassword" name="password" type="password" autocomplete="current-password" required />
+              </div>
+              <button class="btn btn-primary" type="submit">Sign In</button>
+              <div id="loginNotice" class="notice" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h2>Access Notes</h2>
+            <p>This page is intentionally separate from the public site. It is meant for reviewing incoming client requests only.</p>
+            <div class="toolbar">
+              <div class="pill">No public navigation link</div>
+              <div class="pill">Requests stored server-side</div>
+              <div class="pill">Vercel-ready API routes</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dashboardView" class="hidden admin-grid">
+          <div class="card">
+            <h2>Session</h2>
+            <p id="sessionGreeting">Signed in as admin.</p>
+            <div class="toolbar">
+              <button id="refreshMessagesButton" class="btn btn-primary" type="button">Refresh Requests</button>
+              <button id="logoutButton" class="btn btn-secondary" type="button">Logout</button>
+            </div>
+            <div id="dashboardNotice" class="notice" aria-live="polite"></div>
+          </div>
+
+          <div class="card">
+            <h2>Client Requests</h2>
+            <div id="messageCount" style="margin-bottom: 16px; color: rgba(245, 237, 214, 0.72);">0 requests</div>
+            <div id="messageList" class="message-list"></div>
+            <div id="emptyState" class="empty-state hidden">No client requests have been received yet.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = 'AA@12479';
+    const LOCAL_SESSION_KEY = 'aa_admin_local_session';
+    const LOCAL_MESSAGES_KEY = 'aa_local_client_messages';
+
+    const loginView = document.getElementById('loginView');
+    const dashboardView = document.getElementById('dashboardView');
+    const sessionStatus = document.getElementById('sessionStatus');
+    const loginForm = document.getElementById('adminLoginForm');
+    const loginNotice = document.getElementById('loginNotice');
+    const dashboardNotice = document.getElementById('dashboardNotice');
+    const sessionGreeting = document.getElementById('sessionGreeting');
+    const messageList = document.getElementById('messageList');
+    const emptyState = document.getElementById('emptyState');
+    const messageCount = document.getElementById('messageCount');
+    const refreshMessagesButton = document.getElementById('refreshMessagesButton');
+    const logoutButton = document.getElementById('logoutButton');
+
+    function showNotice(node, message, state) {
+      node.textContent = message || '';
+      if (state) {
+        node.dataset.state = state;
+      } else {
+        delete node.dataset.state;
+      }
+    }
+
+    function switchToDashboard() {
+      loginView.classList.add('hidden');
+      dashboardView.classList.remove('hidden');
+      sessionStatus.textContent = 'Authenticated';
+    }
+
+    function switchToLogin() {
+      dashboardView.classList.add('hidden');
+      loginView.classList.remove('hidden');
+      sessionStatus.textContent = 'Signed out';
+    }
+
+    function renderMessages(messages) {
+      messageList.innerHTML = '';
+      messageCount.textContent = messages.length + (messages.length === 1 ? ' request' : ' requests');
+
+      if (!messages.length) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      messages.forEach(function (message) {
+        const item = document.createElement('article');
+        item.className = 'message-item';
+
+        const timestamp = new Date(message.createdAt).toLocaleString();
+
+        item.innerHTML = [
+          '<div class="message-top">',
+          '  <div class="message-name">' + escapeHtml(message.clientName) + '</div>',
+          '  <div class="pill">' + escapeHtml(message.status || 'new') + '</div>',
+          '</div>',
+          '<div class="message-meta">',
+          '  <span class="pill">' + escapeHtml(message.clientEmail) + '</span>',
+          '  <span class="pill">' + escapeHtml(message.clientMobile || 'No mobile provided') + '</span>',
+          '  <span class="pill">' + escapeHtml(formatService(message.selectedService)) + '</span>',
+          '  <span class="pill">' + escapeHtml(timestamp) + '</span>',
+          '</div>',
+          '<div class="message-body">' + escapeHtml(message.clientMessage) + '</div>'
+        ].join('');
+
+        messageList.appendChild(item);
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatService(value) {
+      const map = {
+        'graphic-design': 'Graphic Designing',
+        'video-editing': 'Video Editing',
+        'web-development': 'Web Development'
+      };
+
+      return map[value] || value || 'Unspecified service';
+    }
+
+    function readLocalMessages() {
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_MESSAGES_KEY) || '[]');
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function writeLocalMessages(messages) {
+      localStorage.setItem(LOCAL_MESSAGES_KEY, JSON.stringify(messages));
+    }
+
+    function addLocalMessage(message) {
+      const messages = readLocalMessages();
+      messages.unshift(message);
+      writeLocalMessages(messages.slice(0, 200));
+    }
+
+    function readLocalSession() {
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_SESSION_KEY) || 'null');
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function writeLocalSession(session) {
+      localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(session));
+    }
+
+    function clearLocalSession() {
+      localStorage.removeItem(LOCAL_SESSION_KEY);
+    }
+
+    function fallbackEnabled() {
+      return window.location.protocol === 'file:' || window.location.host.includes('127.0.0.1:5500') || window.location.host.includes('localhost:5500');
+    }
+
+    async function readJsonResponse(response) {
+      const rawText = await response.text();
+
+      if (!rawText) {
+        return {};
+      }
+
+      try {
+        return JSON.parse(rawText);
+      } catch (error) {
+        return { ok: false, error: rawText };
+      }
+    }
+
+    async function apiOrFallbackLogin(username, password) {
+      try {
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({ username: username, password: password })
+        });
+
+        const payload = await readJsonResponse(response);
+
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || 'Login failed.');
+        }
+
+        return { ok: true, source: 'api' };
+      } catch (error) {
+        if (!fallbackEnabled()) {
+          throw error;
+        }
+
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+          writeLocalSession({ username: ADMIN_USERNAME, expiresAt: Date.now() + 8 * 60 * 60 * 1000 });
+          return { ok: true, source: 'local' };
+        }
+
+        throw new Error('Invalid admin credentials.');
+      }
+    }
+
+    async function apiOrFallbackSession() {
+      try {
+        const response = await fetch('/api/admin/session', { credentials: 'include' });
+
+        if (!response.ok) {
+          throw new Error('No API session');
+        }
+
+        const payload = await readJsonResponse(response);
+        if (!payload.authenticated) {
+          throw new Error('No API session');
+        }
+
+        return { ok: true, source: 'api' };
+      } catch (error) {
+        if (!fallbackEnabled()) {
+          throw error;
+        }
+
+        const localSession = readLocalSession();
+        if (localSession && localSession.username === ADMIN_USERNAME && localSession.expiresAt > Date.now()) {
+          return { ok: true, source: 'local' };
+        }
+
+        throw new Error('No active local session');
+      }
+    }
+
+    async function apiOrFallbackMessages() {
+      try {
+        const response = await fetch('/api/admin/messages', { credentials: 'include' });
+        const payload = await readJsonResponse(response);
+
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || 'Unable to load messages.');
+        }
+
+        return { messages: payload.messages || [], source: 'api' };
+      } catch (error) {
+        if (!fallbackEnabled()) {
+          throw error;
+        }
+
+        return { messages: readLocalMessages(), source: 'local' };
+      }
+    }
+
+    if (fallbackEnabled() && window.location.protocol !== 'file:') {
+      const existingLocalMessages = readLocalMessages();
+      if (existingLocalMessages.length) {
+        writeLocalMessages(existingLocalMessages.map(function (message) {
+          return {
+            clientMobile: message.clientMobile || 'No mobile provided',
+            ...message
+          };
+        }));
+      }
+    }
+
+    async function checkSession() {
+      try {
+        await apiOrFallbackSession();
+        switchToDashboard();
+        sessionGreeting.textContent = fallbackEnabled() ? 'Signed in locally as admin.' : 'Signed in as admin.';
+        return true;
+      } catch (error) {
+        switchToLogin();
+        return false;
+      }
+    }
+
+    async function loadMessages() {
+      showNotice(dashboardNotice, 'Loading requests...', '');
+
+      const payload = await apiOrFallbackMessages();
+
+      renderMessages(payload.messages || []);
+      showNotice(dashboardNotice, payload.source === 'local' ? 'Requests loaded from local browser storage.' : 'Requests refreshed.', 'success');
+    }
+
+    loginForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      showNotice(loginNotice, 'Signing in...', '');
+
+      try {
+        const result = await apiOrFallbackLogin(loginForm.username.value, loginForm.password.value);
+
+        showNotice(loginNotice, result.source === 'local' ? 'Signed in locally for browser testing.' : 'Signed in successfully.', 'success');
+        switchToDashboard();
+        await loadMessages();
+      } catch (error) {
+        showNotice(loginNotice, error.message || 'Unable to sign in.', 'error');
+      }
+    });
+
+    refreshMessagesButton.addEventListener('click', async function () {
+      try {
+        await loadMessages();
+      } catch (error) {
+        showNotice(dashboardNotice, error.message || 'Unable to refresh messages.', 'error');
+      }
+    });
+
+    logoutButton.addEventListener('click', async function () {
+      try {
+        await fetch('/api/admin/logout', {
+          method: 'POST',
+          credentials: 'include'
+        });
+      } catch (error) {
+        // Ignore local/static failures and clear browser session below.
+      }
+
+      clearLocalSession();
+
+      messageList.innerHTML = '';
+      showNotice(loginNotice, '', '');
+      showNotice(dashboardNotice, '', '');
+      loginForm.reset();
+      switchToLogin();
+      sessionStatus.textContent = 'Signed out';
+    });
+
+    checkSession()
+      .then(function (isSignedIn) {
+        if (isSignedIn) {
+          return loadMessages();
+        }
+      })
+      .catch(function () {
+        switchToLogin();
+      });
+  </script>
+</body>
+</html>

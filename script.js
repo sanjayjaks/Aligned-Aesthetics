@@ -154,3 +154,85 @@
     observer.observe(el);
   });
 })();
+
+
+/* ── 6. CONTACT FORM SUBMISSION ── */
+(function initContactForm() {
+  var form = document.getElementById('clientRequestForm');
+  var status = document.getElementById('requestFormStatus');
+  var localMessagesKey = 'aa_local_client_messages';
+
+  if (!form || !status) return;
+
+  function readLocalMessages() {
+    try {
+      return JSON.parse(localStorage.getItem(localMessagesKey) || '[]');
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveLocalMessage(message) {
+    var messages = readLocalMessages();
+    messages.unshift(message);
+    localStorage.setItem(localMessagesKey, JSON.stringify(messages.slice(0, 200)));
+  }
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    status.textContent = 'Sending your message...';
+    status.dataset.state = 'pending';
+
+    var submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    try {
+      var payload = {};
+
+      new FormData(form).forEach(function (value, key) {
+        payload[key] = value;
+      });
+
+      try {
+        var response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        var responsePayload = await response.json();
+
+        if (!response.ok || !responsePayload.ok) {
+          throw new Error(responsePayload.error || 'Unable to send your message right now.');
+        }
+      } catch (apiError) {
+        saveLocalMessage({
+          id: 'local-' + Date.now(),
+          clientName: payload.client_name,
+          clientEmail: payload.client_email,
+          clientMobile: payload.client_mobile,
+          selectedService: payload.selected_service,
+          clientMessage: payload.client_message,
+          createdAt: new Date().toISOString(),
+          status: 'new'
+        });
+      }
+
+      form.reset();
+      status.textContent = "We\'ll reach you soon.";
+      status.dataset.state = 'success';
+    } catch (error) {
+      status.textContent = error.message || 'Something went wrong. Please try again.';
+      status.dataset.state = 'error';
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    }
+  });
+})();
