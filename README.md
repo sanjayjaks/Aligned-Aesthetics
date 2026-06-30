@@ -4,14 +4,6 @@
 
 Open `index.html` as the public landing page. The contact form posts to `/api/messages` and the submitted requests are stored for the admin inbox.
 
-## Admin page
-
-Open `admin.html` directly to review client requests.
-
-Admin login:
-
-- Username: `admin`
-- Password: `AA@12479`
 
 ## Vercel deployment
 
