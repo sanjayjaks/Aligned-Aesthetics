@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aligned Asthetics — Graphics · Websites · Designs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+  <title>Aligned Aesthetics — Graphics · Websites · Designs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -14,7 +14,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Padding to prevent hero content hiding behind the sticky navbar */
     body {
       padding-top: 80px;
     }
@@ -54,8 +53,8 @@
     }
 
     .nav-logo-mark {
-      width: 168px;
-      height: 168px;
+      width: 44px;
+      height: 44px;
       display: block;
       flex: none;
       object-fit: contain;
@@ -66,18 +65,50 @@
       #navbar {
         flex-direction: column;
         gap: 10px;
-        padding: 15px;
+        padding: 12px 16px;
         height: auto;
       }
       body {
-        padding-top: 140px;
+        padding-top: 150px;
+      }
+      .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-links a {
+        font-size: 10px;
       }
     }
 
-    /* ── PORTFOLIO POPUP (MODAL) STYLES ── */
-    .portfolio-item { cursor: pointer; transition: transform 0.3s ease; }
-    .portfolio-item:hover { transform: scale(1.02); }
+    @media (max-width: 420px) {
+      .nav-logo-text { font-size: 14px; }
+      .nav-logo-mark { width: 36px; height: 36px; }
+      .nav-cta { padding: 8px 16px; font-size: 9px; }
+    }
 
+    /* ════════════════════════════════
+       MOBILE-WIDE RESPONSIVE FIXES
+    ════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero-title { font-size: clamp(40px, 13vw, 64px) !important; line-height: 1 !important; }
+      .hero-desc  { font-size: 13px; padding: 0 8px; }
+      .hero-actions { flex-direction: column; width: 100%; gap: 14px; }
+      .hero-actions a { width: 100%; text-align: center; }
+      .section-title { font-size: clamp(28px, 8vw, 42px) !important; }
+      .stat-num { font-size: 38px !important; }
+      .gold-rule { margin: 20px auto; }
+      #about-section, #process, section { padding: 60px 18px !important; }
+      .about-stats { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+      .stat-card { padding: 22px 16px !important; }
+      .process-step { gap: 24px !important; }
+      .step-dot { width: 46px !important; height: 46px !important; font-size: 17px !important; }
+      .process-line { left: 23px !important; }
+      .contact-info { gap: 24px !important; }
+      .marquee-item { font-size: 16px; padding: 0 22px; }
+    }
+
+    /* ── PORTFOLIO POPUP (MODAL) STYLES — kept for Video popup only now ── */
     .portfolio-popup-modal {
       display: none; 
       position: fixed;
@@ -97,8 +128,8 @@
       border: 1px solid rgba(200, 168, 75, 0.2);
       border-radius: 12px;
       width: 100%;
-      max-width: 900px;
-      max-height: 85vh;
+      max-width: 1000px;
+      max-height: 88vh;
       overflow-y: auto;
       padding: 40px 30px 30px 30px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.6);
@@ -112,6 +143,7 @@
       cursor: pointer;
       transition: color 0.3s ease;
       background: none; border: none; outline: none;
+      z-index: 2;
     }
     .modal-close-btn:hover { color: #fff; }
 
@@ -124,93 +156,135 @@
       letter-spacing: 1px;
     }
 
-    /* 2 Rows, 2 Columns Popup Grid */
-    .popup-sample-grid {
+    @media (max-width: 600px) {
+      .modal-content-wrap { padding: 50px 14px 20px; border-radius: 0; max-height: 100vh; height: 100vh; }
+      .modal-title { font-size: 21px; margin-bottom: 16px; }
+    }
+
+    /* ════════════════════════════════
+       FIX #3 — GRAPHICS PORTFOLIO (large grid, no modal)
+    ════════════════════════════════ */
+    .graphics-showcase {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 60px;
     }
 
-    .popup-sample-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      background: rgba(255,255,255,0.02);
-      padding: 20px;
-      border: 1px solid rgba(200, 168, 75, 0.1);
-      border-radius: 8px;
-    }
-
-    .popup-sample-info {
-      flex: 0 0 160px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      color: #8B6914;
-      line-height: 1.5;
-    }
-
-    .popup-sample-info strong {
-      color: #C8A84B;
-    }
-
-    .popup-sample-media {
-      flex: 1;
-      background: #000;
-      border: 1px solid rgba(200, 168, 75, 0.2);
-      border-radius: 6px;
-      aspect-ratio: 16/9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .graphics-card {
+      position: relative;
+      border-radius: 14px;
       overflow: hidden;
-      max-height: 140px;
+      background: var(--dark-mid, #2C1E0A);
+      border: 1px solid rgba(200,168,75,0.12);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .graphics-card.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .graphics-card:hover {
+      border-color: rgba(200,168,75,0.5);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,168,75,0.15);
+      transform: translateY(-8px) scale(1.015);
     }
 
-    .popup-sample-media video, .popup-sample-media img {
+    .graphics-card-media {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .graphics-card-media img {
       width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+    }
+    .graphics-card:hover .graphics-card-media img {
+      transform: scale(1.08);
+      filter: brightness(1.05);
     }
 
-    .popup-open-image {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 12px;
-      padding: 10px 18px;
-      border: 1px solid rgba(200, 168, 75, 0.28);
-      border-radius: 999px;
+    .graphics-card-media::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,7,3,0.85) 0%, rgba(10,7,3,0.1) 45%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .graphics-card:hover .graphics-card-media::after {
+      opacity: 1;
+    }
+
+    .graphics-card-zoom-hint {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(10,7,3,0.55);
+      border: 1px solid rgba(200,168,75,0.3);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
       color: #C8A84B;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .graphics-card:hover .graphics-card-zoom-hint {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .graphics-card-zoom-hint svg { width: 16px; height: 16px; }
+
+    .graphics-card-info {
+      padding: 18px 20px 20px;
+      border-top: 1px solid rgba(200,168,75,0.08);
+    }
+    .graphics-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      color: #F5EDD6;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+    .graphics-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      text-decoration: none;
-      background: rgba(200, 168, 75, 0.06);
-      transition: all 0.25s ease;
+      color: rgba(200,168,75,0.65);
+    }
+    .graphics-card-meta .dot {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: rgba(200,168,75,0.4);
+    }
+    .graphics-card-meta .author { color: rgba(245,237,214,0.4); }
+
+    @media (max-width: 760px) {
+      .graphics-showcase { grid-template-columns: 1fr; gap: 22px; }
+      .graphics-card-media { aspect-ratio: 16/11; }
     }
 
-    .popup-open-image:hover {
-      background: rgba(200, 168, 75, 0.16);
-      color: #fff;
-      transform: translateY(-1px);
-    }
-
+    /* Image lightbox for graphics-showcase click */
     .image-lightbox {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 10000;
-      background: rgba(5, 5, 5, 0.92);
+      background: rgba(5, 5, 5, 0.94);
       backdrop-filter: blur(10px);
       align-items: center;
       justify-content: center;
       padding: 24px;
     }
-
-    .image-lightbox.open {
-      display: flex;
-    }
-
+    .image-lightbox.open { display: flex; }
     .image-lightbox-content {
       position: relative;
       width: min(1100px, 96vw);
@@ -222,8 +296,12 @@
       overflow: hidden;
       display: grid;
       grid-template-rows: auto 1fr;
+      animation: lightboxIn 0.35s cubic-bezier(0.16,1,0.3,1);
     }
-
+    @keyframes lightboxIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1); }
+    }
     .image-lightbox-header {
       display: flex;
       justify-content: space-between;
@@ -233,10 +311,18 @@
       border-bottom: 1px solid rgba(200, 168, 75, 0.12);
       color: #C8A84B;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
+      font-size: 22px;
       letter-spacing: 0.04em;
     }
-
+    .image-lightbox-header small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,237,214,0.4);
+      margin-top: 4px;
+    }
     .image-lightbox-close {
       appearance: none;
       border: 0;
@@ -246,8 +332,8 @@
       line-height: 1;
       cursor: pointer;
       padding: 0;
+      flex-shrink: 0;
     }
-
     .image-lightbox-frame {
       background: #000;
       display: flex;
@@ -256,7 +342,6 @@
       overflow: auto;
       padding: 18px;
     }
-
     .image-lightbox-frame img {
       display: block;
       max-width: 100%;
@@ -264,15 +349,207 @@
       object-fit: contain;
       border-radius: 10px;
     }
-
-    .popup-web-link {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; height: 100%; text-decoration: none;
-      color: #C8A84B; font-family: 'Inter', sans-serif;
-      font-size: 11px; font-weight: 500; letter-spacing: 1px;
-      background: rgba(200, 168, 75, 0.05); transition: all 0.3s ease;
+    @media (max-width: 600px) {
+      .image-lightbox { padding: 0; }
+      .image-lightbox-content { width: 100vw; max-height: 100vh; height: 100vh; border-radius: 0; grid-template-rows: auto 1fr; }
+      .image-lightbox-frame img { max-height: 70vh; }
     }
-    .popup-web-link:hover { background: rgba(200, 168, 75, 0.15); color: #fff; }
+
+    /* ════════════════════════════════
+       FIX #2 — WEB DEV PORTFOLIO: direct links
+    ════════════════════════════════ */
+    .webdev-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 60px;
+    }
+    .webdev-card {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--dark-mid, #2C1E0A);
+      border: 1px solid rgba(200,168,75,0.12);
+      padding: 36px 28px;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .webdev-card.in-view { opacity: 1; transform: translateY(0); }
+    .webdev-card:hover {
+      border-color: rgba(200,168,75,0.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      transform: translateY(-6px);
+    }
+    .webdev-card-icon {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,168,75,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: #C8A84B;
+      margin-bottom: 22px;
+      transition: transform 0.4s ease, background 0.4s ease;
+    }
+    .webdev-card:hover .webdev-card-icon {
+      transform: rotate(-8deg) scale(1.05);
+      background: rgba(200,168,75,0.1);
+    }
+    .webdev-card-icon svg { width: 20px; height: 20px; }
+    .webdev-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      color: #F5EDD6;
+      margin-bottom: 6px;
+    }
+    .webdev-card-author {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,237,214,0.4);
+      margin-bottom: 18px;
+    }
+    .webdev-card-cta {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #C8A84B;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s ease;
+    }
+    .webdev-card:hover .webdev-card-cta { gap: 10px; }
+
+    @media (max-width: 900px) {
+      .webdev-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .webdev-grid { grid-template-columns: 1fr; gap: 18px; }
+      .webdev-card { padding: 28px 22px; }
+    }
+
+    /* ════════════════════════════════
+       FIX #5 — VIDEO PORTFOLIO: embedded players
+    ════════════════════════════════ */
+    .video-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+    .video-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--dark-mid, #2C1E0A);
+      border: 1px solid rgba(200,168,75,0.12);
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.4s ease;
+    }
+    .video-card.in-view { opacity: 1; transform: translateY(0); }
+    .video-card:hover { border-color: rgba(200,168,75,0.4); }
+
+    .video-card-frame {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      position: relative;
+    }
+    .video-card-frame.is-short { aspect-ratio: 9/16; max-height: 520px; margin: 0 auto; }
+    .video-card-frame iframe {
+      width: 100%; height: 100%; border: 0; display: block;
+    }
+
+    .video-card-info {
+      padding: 16px 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .video-card-author {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(245,237,214,0.55);
+    }
+    .video-card-author strong { color: #C8A84B; font-weight: 500; }
+    .video-card-badge {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 4px 10px; border: 1px solid rgba(139,105,20,0.3);
+      color: #E8D49A; border-radius: 20px; flex-shrink: 0;
+    }
+
+    @media (max-width: 760px) {
+      .video-showcase { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+    /* ════════════════════════════════
+       FIX #6 — Animated logo replacing mandala (breathing)
+    ════════════════════════════════ */
+    @keyframes breatheLogo {
+      0%, 100% { transform: scale(1);    opacity: 0.85; }
+      50%      { transform: scale(1.05); opacity: 1; }
+    }
+    @keyframes breatheGlow {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50%      { opacity: 0.6;  transform: scale(1.08); }
+    }
+    .hero-logo-breathe {
+      animation: breatheLogo 4.5s ease-in-out infinite;
+    }
+    .hero-logo-glow-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,75,0.25), transparent 70%);
+      animation: breatheGlow 4.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════
+       FIX (general) — Premium scroll-reveal animation upgrade
+       Applied via JS by adding .av-reveal / .av-in classes;
+       these rules layer on top of the existing .reveal system
+       without touching script.js logic.
+    ════════════════════════════════ */
+    .av-reveal {
+      opacity: 0;
+      transform: translateY(48px) scale(0.98);
+      filter: blur(6px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1),
+                  filter 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .av-reveal.av-in {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+    .av-stagger-1 { transition-delay: 0.05s; }
+    .av-stagger-2 { transition-delay: 0.12s; }
+    .av-stagger-3 { transition-delay: 0.19s; }
+    .av-stagger-4 { transition-delay: 0.26s; }
+    .av-stagger-5 { transition-delay: 0.33s; }
+    .av-stagger-6 { transition-delay: 0.40s; }
+
+    /* Section heading underline sweep */
+    .section-label {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Service cards: premium tilt-in */
+    .service-card.av-reveal {
+      transform: translateY(48px) rotateX(6deg);
+      transform-origin: bottom center;
+    }
+    .service-card.av-reveal.av-in {
+      transform: translateY(0) rotateX(0);
+    }
 
     /* ── CONTACT FORM STYLE ── */
     .highlighted-form-box {
@@ -297,11 +574,11 @@
       color: #C8A84B;
       text-align: center;
     }
-    .form-status[data-state="error"] {
-      color: #d38b8b;
-    }
-    .form-status[data-state="success"] {
-      color: #9acb9f;
+    .form-status[data-state="error"] { color: #d38b8b; }
+    .form-status[data-state="success"] { color: #9acb9f; }
+
+    @media (max-width: 600px) {
+      .highlighted-form-box { padding: 22px 18px; margin-top: 30px; }
     }
 
     /* ── NEW CLEAN ROW FOOTER SYSTEM ── */
@@ -317,44 +594,20 @@
       font-size: 13px;
       color: #8B6914;
     }
-    .footer-left-block {
-      text-align: left;
-    }
-    .footer-center-block {
-      text-align: center;
-      font-weight: 500;
-      color: #C8A84B;
-      letter-spacing: 1px;
-    }
-    .footer-right-block {
-      text-align: right;
-    }
-    .footer-right-block a {
-      color: #8B6914;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .footer-right-block a:hover {
-      color: #C8A84B;
-    }
+    .footer-left-block { text-align: left; }
+    .footer-center-block { text-align: center; font-weight: 500; color: #C8A84B; letter-spacing: 1px; }
+    .footer-right-block { text-align: right; }
+    .footer-right-block a { color: #8B6914; text-decoration: none; transition: color 0.3s ease; }
+    .footer-right-block a:hover { color: #C8A84B; }
 
     @media (max-width: 768px) {
-      .popup-sample-grid { grid-template-columns: 1fr; gap: 20px; }
-      .modal-content-wrap { padding: 30px 15px 20px 15px; }
-      .aligned-footer-container {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      .footer-left-block, .footer-center-block, .footer-right-block {
-        text-align: center;
-      }
+      .aligned-footer-container { flex-direction: column; gap: 15px; text-align: center; padding: 24px 16px; }
+      .footer-left-block, .footer-center-block, .footer-right-block { text-align: center; }
     }
-    @media (max-width: 480px) {
-      .popup-sample-item { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .popup-sample-info { flex: none; width: 100%; }
-      .popup-sample-media { width: 100%; }
-    }
+
+    /* Prevent horizontal scroll on small devices */
+    html, body { max-width: 100%; overflow-x: hidden; }
+    img { max-width: 100%; }
   </style>
 </head>
 <body>
@@ -364,8 +617,8 @@
 
   <nav id="navbar">
     <a href="#hero" class="nav-logo">
-      <img class="nav-logo-mark" src="1000409022-removebg-preview.png" alt="Aligned Asthetics logo"/>
-      <span class="nav-logo-text">Aligned Asthetics</span>
+      <img class="nav-logo-mark" src="1000409022-removebg-preview.png" alt="Aligned Aesthetics logo"/>
+      <span class="nav-logo-text">Aligned Aesthetics</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about-section">About</a></li>
@@ -379,57 +632,15 @@
 
   <section id="hero">
     <div class="mandala-bg" id="mandala-bg"></div>
-    <div class="hero-mandala-wrap">
-      <svg id="hero-mandala" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(200,200)">
-          <g class="rotate-cw">
-            <g stroke="#C8A84B" stroke-width="1.5" fill="none" stroke-linecap="round">
-              <path d="M0,-20 C-18,-45 -18,-80 0,-100"/><path d="M0,-20 C18,-45 18,-80 0,-100"/>
-              <path d="M0,-24 C-24,-52 -24,-88 0,-110"/><path d="M0,-24 C24,-52 24,-88 0,-110"/>
-              <path d="M20,0 C45,-18 80,-18 100,0"/><path d="M20,0 C45,18 80,18 100,0"/>
-              <path d="M24,0 C52,-24 88,-24 110,0"/><path d="M24,0 C52,24 88,24 110,0"/>
-              <path d="M0,20 C-18,45 -18,80 0,100"/><path d="M0,20 C18,45 18,80 0,100"/>
-              <path d="M0,24 C-24,52 -24,88 0,110"/><path d="M0,24 C24,52 24,88 0,110"/>
-              <path d="M-20,0 C-45,-18 -80,-18 -100,0"/><path d="M-20,0 C-45,18 -80,18 -100,0"/>
-              <path d="M-24,0 C-52,-24 -88,-24 -110,0"/><path d="M-24,0 C-52,24 -88,24 -110,0"/>
-              <path d="M14,-14 C32,-45 55,-68 70,-70"/><path d="M14,-14 C45,-32 68,-55 70,-70"/>
-              <path d="M14,14 C32,45 55,68 70,70"/><path d="M14,14 C45,32 68,55 70,70"/>
-              <path d="M-14,-14 C-32,-45 -55,-68 -70,-70"/><path d="M-14,-14 C-45,-32 -68,-55 -70,-70"/>
-              <path d="M-14,14 C-32,45 -55,68 -70,70"/><path d="M-14,14 C-45,32 68,55 70,70"/>
-            </g>
-          </g>
-          <g class="rotate-ccw">
-            <circle cx="0" cy="0" r="16" stroke="#C8A84B" stroke-width="1.5" fill="none"/>
-            <circle cx="0" cy="0" r="30" stroke="#8B6914" stroke-width="0.8" fill="none" stroke-dasharray="4 6"/>
-            <circle cx="0" cy="0" r="55" stroke="#8B6914" stroke-width="0.6" fill="none" stroke-dasharray="2 8"/>
-            <circle cx="0" cy="0" r="80" stroke="#8B6914" stroke-width="0.5" fill="none" stroke-dasharray="1 10"/>
-          </g>
-          <circle cx="0" cy="0" r="8" stroke="#C8A84B" stroke-width="2" fill="none"/>
-          <circle cx="0" cy="0" r="4" fill="#C8A84B"/>
-        </g>
-      </svg>
-    </div>
 
     <div class="hero-eyebrow">Designing Brands · Crafting Experiences</div>
 
-    <svg class="hero-logo-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <g transform="translate(60,60)">
-        <g class="rotate-cw-slow">
-          <g stroke="#C8A84B" stroke-width="3" fill="none" stroke-linecap="round">
-            <path d="M0,-12 C-8,-26 -8,-44 0,-52"/><path d="M0,-12 C8,-26 8,-44 0,-52"/>
-            <path d="M0,-15 C-12,-30 -12,-48 0,-58"/><path d="M0,-15 C12,-30 12,-48 0,-58"/>
-            <path d="M12,0 C26,-8 44,-8 52,0"/><path d="M12,0 C26,8 44,8 52,0"/>
-            <path d="M15,0 C30,-12 48,-12 58,0"/><path d="M15,0 C30,12 48,12 58,0"/>
-            <path d="M0,12 C-8,26 -8,44 0,52"/><path d="M0,12 C8,26 8,44 0,52"/>
-            <path d="M0,15 C-12,30 -12,48 0,58"/><path d="M0,15 C12,30 12,48 0,58"/>
-            <path d="M-12,0 C-26,-8 -44,-8 -52,0"/><path d="M-12,0 C-26,8 -44,8 -52,0"/>
-            <path d="M-15,0 C-30,-12 -48,-12 -58,0"/><path d="M-15,0 C-30,12 -48,12 -58,0"/>
-          </g>
-        </g>
-        <circle cx="0" cy="0" r="10" stroke="#C8A84B" stroke-width="2.5" fill="none"/>
-        <circle cx="0" cy="0" r="5" fill="#C8A84B"/>
-      </g>
-    </svg>
+    <!-- Small breathing logo above the title (replaces old flower mark) -->
+    <div style="position:relative; width:120px; height:120px; z-index:2; margin-bottom:36px; display:flex; align-items:center; justify-content:center;">
+      <div class="hero-logo-glow-ring"></div>
+      <img src="1000409022-removebg-preview.png" alt="Aligned Aesthetics" class="hero-logo-breathe"
+           style="width:100%; height:100%; object-fit:contain;"/>
+    </div>
 
     <h1 class="hero-title">Aligned<br/><em>Aesthetics</em></h1>
     <p class="hero-sub">Graphics &nbsp;·&nbsp; Websites &nbsp;·&nbsp; Designs</p>
@@ -452,17 +663,17 @@
 
   <section id="about-section">
     <div id="about">
-      <div class="about-copy reveal">
+      <div class="about-copy av-reveal">
         <span class="section-label">Who We Are</span>
         <h2 class="section-title">A Studio Built on<br/><em>Purpose & Precision</em></h2>
         <div class="gold-rule"></div>
-        <p>Aligned Asthetics is a creative agency where artistry meets strategy. Founded on the belief that exceptional design isn't just visual — it's a conversation between brand and audience.</p>
+        <p>Aligned Aesthetics is a creative agency where artistry meets strategy. Founded on the belief that exceptional design isn't just visual — it's a conversation between brand and audience.</p>
         <p>We work with businesses that understand the power of a strong visual identity, partnering closely to translate their vision into experiences that resonate, convert, and endure.</p>
         <div style="margin-top:36px;">
           <a href="#contact-form-anchor" class="btn-primary">Start a Conversation</a>
         </div>
       </div>
-      <div class="about-stats reveal" style="transition-delay:0.2s;">
+      <div class="about-stats av-reveal av-stagger-2">
         <div class="stat-card">
           <div class="stat-num">6</div>
           <div class="stat-label">Core Verticals</div>
@@ -485,13 +696,13 @@
 
   <section id="services">
     <div class="services-inner">
-      <div class="services-header reveal">
+      <div class="services-header av-reveal">
         <span class="section-label">What We Do</span>
         <h2 class="section-title">Our <em>Creative</em> Services</h2>
       </div>
       <div class="services-grid">
 
-        <div class="service-card reveal">
+        <div class="service-card av-reveal av-stagger-1">
           <span class="service-number">01</span>
           <h3 class="service-title">Branding &amp;<br/><em>Graphic Design</em></h3>
           <p class="service-desc">Visual identities that speak before words do. We craft end-to-end designs that perfectly capture your brand's essence across print and digital media.</p>
@@ -500,7 +711,7 @@
           </div>
         </div>
 
-        <div class="service-card reveal" style="transition-delay:0.1s;">
+        <div class="service-card av-reveal av-stagger-2">
           <span class="service-number">02</span>
           <h3 class="service-title">Video Production<br/><em>&amp; Editing</em></h3>
           <p class="service-desc">Cinematic storytelling through expert post-production and animation. Turning raw footages or concepts into highly engaging visual masterpieces.</p>
@@ -509,7 +720,7 @@
           </div>
         </div>
 
-        <div class="service-card reveal" style="transition-delay:0.2s;">
+        <div class="service-card av-reveal av-stagger-3">
           <span class="service-number">03</span>
           <h3 class="service-title">Web Design<br/><em>&amp; Development</em></h3>
           <p class="service-desc">Digital experiences engineered for absolute performance and crafted for beauty, ensuring responsiveness, optimization, and seamless UI/UX execution.</p>
@@ -518,7 +729,7 @@
           </div>
         </div>
 
-        <div class="service-card reveal" style="transition-delay:0.3s;">
+        <div class="service-card av-reveal av-stagger-4">
           <span class="service-number">04</span>
           <h3 class="service-title">Social Media &amp;<br/><em>Digital Marketing</em></h3>
           <p class="service-desc">Strategic online growth, effective campaign management, and conversion-focused content frameworks that amplify your digital positioning.</p>
@@ -527,7 +738,7 @@
           </div>
         </div>
 
-        <div class="service-card reveal" style="transition-delay:0.4s;">
+        <div class="service-card av-reveal av-stagger-5">
           <span class="service-number">05</span>
           <h3 class="service-title">Business<br/><em>Branding</em></h3>
           <p class="service-desc">Professional corporate assets, pitch-ready profiles, and consultation designed to attract clients, investors, and stakeholders seamlessly.</p>
@@ -536,7 +747,7 @@
           </div>
         </div>
 
-        <div class="service-card reveal" style="transition-delay:0.5s;">
+        <div class="service-card av-reveal av-stagger-6">
           <span class="service-number">06</span>
           <h3 class="service-title">Custom Creative<br/><em>Solutions</em></h3>
           <p class="service-desc">Tailored high-end business strategies and specialized print/digital requests meant to bring unique storytelling visuals into reality.</p>
@@ -551,7 +762,7 @@
 
   <section id="process">
     <div class="process-inner">
-      <div class="reveal">
+      <div class="av-reveal">
         <span class="section-label">How We Work</span>
         <h2 class="section-title">Our <em>Creative</em> Process</h2>
       </div>
@@ -596,155 +807,200 @@
     </div>
   </section>
 
+  <!-- ════════════════════════════════
+       PORTFOLIO — restructured per fixes #2, #3, #5
+  ════════════════════════════════ -->
   <section id="portfolio">
     <div class="portfolio-inner">
-      <div class="reveal portfolio-header">
+      <div class="av-reveal portfolio-header">
         <span class="section-label">Our Work</span>
         <h2 class="section-title">Selected <em>Projects</em></h2>
-        <p class="portfolio-subtext">Click on any category below to view our samples and creations.</p>
+        <p class="portfolio-subtext">A closer look at our graphic design, video editing, and web development work.</p>
       </div>
-      
-      <div class="portfolio-grid reveal" style="transition-delay:0.2s;">
-        
-        <div class="portfolio-item" onclick="openPortfolioPopup('graphics-popup')">
-          <div class="portfolio-placeholder">
-            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="28" height="28" rx="2"/><circle cx="13" cy="13" r="3"/><path d="M4 24l8-8 6 6 4-4 10 10"/></svg>
-            <span>Graphic Design</span>
-          </div>
-          <div class="portfolio-overlay"><span>Graphic Design</span></div>
-        </div>
-        
-        <div class="portfolio-item" onclick="openPortfolioPopup('video-popup')">
-          <div class="portfolio-placeholder">
-            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="8" width="24" height="18" rx="2"/><path d="M26 14l8-4v16l-8-4V14z"/></svg>
-            <span>Video Editing</span>
-          </div>
-          <div class="portfolio-overlay"><span>Video Editing</span></div>
-        </div>
-        
-        <div class="portfolio-item" onclick="openPortfolioPopup('web-popup')">
-          <div class="portfolio-placeholder">
-            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="4" width="32" height="24" rx="2"/><line x1="2" y1="10" x2="34" y2="10"/><line x1="12" y1="28" x2="24" y2="28"/></svg>
-            <span>Web Development</span>
-          </div>
-          <div class="portfolio-overlay"><span>Web Development</span></div>
-        </div>
-        
-        <div class="portfolio-item" onclick="openPortfolioPopup('app-popup')">
-          <div class="portfolio-placeholder">
-            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="10" y="2" width="16" height="32" rx="3"/><line x1="16" y1="28" x2="20" y2="28"/></svg>
-            <span>App Design</span>
-          </div>
-          <div class="portfolio-overlay"><span>App Design</span></div>
-        </div>
 
+      <!-- ── FIX #3: Graphics — large grid, direct view, name + category, hover/pop animations ── -->
+      <div style="margin-top:80px;">
+        <h3 class="section-title" style="font-size:clamp(24px,3vw,34px); margin-bottom:6px;" class="av-reveal">Graphic <em>Design</em></h3>
+        <p style="color:rgba(245,237,214,0.45); font-size:12px; letter-spacing:0.05em; margin-bottom:10px;">Click any design to view it in full size.</p>
+
+        <div class="graphics-showcase" id="graphicsShowcase">
+          <div class="graphics-card" data-img="3.png" data-name="Website Design Concept" data-category="Web UI Design">
+            <div class="graphics-card-media">
+              <img src="3.png" alt="Website design sample" loading="lazy"/>
+              <div class="graphics-card-zoom-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </div>
+            </div>
+            <div class="graphics-card-info">
+              <div class="graphics-card-name">Website Design Concept</div>
+              <div class="graphics-card-meta"><span>Web UI Design</span><span class="dot"></span><span class="author">Neha Mhaskar</span></div>
+            </div>
+          </div>
+
+          <div class="graphics-card" data-img="4.png" data-name="Poster Design" data-category="Print &amp; Marketing">
+            <div class="graphics-card-media">
+              <img src="4.png" alt="Poster design sample" loading="lazy"/>
+              <div class="graphics-card-zoom-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </div>
+            </div>
+            <div class="graphics-card-info">
+              <div class="graphics-card-name">Poster Design</div>
+              <div class="graphics-card-meta"><span>Print &amp; Marketing</span><span class="dot"></span><span class="author">Neha Mhaskar</span></div>
+            </div>
+          </div>
+
+          <div class="graphics-card" data-img="layout.png" data-name="Instagram Feed Layout" data-category="Social Media Design">
+            <div class="graphics-card-media">
+              <img src="layout.png" alt="Instagram layout sample" loading="lazy"/>
+              <div class="graphics-card-zoom-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </div>
+            </div>
+            <div class="graphics-card-info">
+              <div class="graphics-card-name">Instagram Feed Layout</div>
+              <div class="graphics-card-meta"><span>Social Media Design</span><span class="dot"></span><span class="author">Neha Mhaskar</span></div>
+            </div>
+          </div>
+
+          <div class="graphics-card" data-img="logo-design.png" data-name="Logo Design" data-category="Brand Identity">
+            <div class="graphics-card-media">
+              <img src="logo-design.png" alt="Logo design sample" loading="lazy"
+                   onerror="this.onerror=null;this.src='logo-design.png';"/>
+              <div class="graphics-card-zoom-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </div>
+            </div>
+            <div class="graphics-card-info">
+              <div class="graphics-card-name">Logo Design</div>
+              <div class="graphics-card-meta"><span>Brand Identity</span><span class="dot"></span><span class="author">Neha Mhaskar</span></div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- ── FIX #5: Video — embedded players, no YouTube redirect ── -->
+      <div style="margin-top:100px;">
+        <h3 class="section-title av-reveal" style="font-size:clamp(24px,3vw,34px); margin-bottom:6px;">Video <em>Editing</em></h3>
+        <p style="color:rgba(245,237,214,0.45); font-size:12px; letter-spacing:0.05em; margin-bottom:10px;">Watch our edits directly — no redirects.</p>
+
+        <div class="video-showcase" id="videoShowcase">
+          <div class="video-card">
+            <div class="video-card-frame is-short">
+              <iframe src="https://www.youtube.com/embed/GPM3jwXNW4I" title="Aligned Aesthetics video edit" loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="video-card-info">
+              <div class="video-card-author">Edited by <strong>Sanjay Jakkani</strong></div>
+              <span class="video-card-badge">Short</span>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-card-frame is-short">
+              <iframe src="https://www.youtube.com/embed/Qn9N_iXoBig" title="Aligned Aesthetics video edit" loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="video-card-info">
+              <div class="video-card-author">Edited by <strong>Sanjay Jakkani</strong></div>
+              <span class="video-card-badge">Short</span>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-card-frame">
+              <iframe src="https://www.youtube.com/embed/puhYHpe-W-U" title="Aligned Aesthetics video edit" loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="video-card-info">
+              <div class="video-card-author">Edited by <strong>Rasik Kumar</strong></div>
+              <span class="video-card-badge">Edit</span>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-card-frame">
+              <iframe src="https://www.youtube.com/embed/CqvYPSZCoGg" title="Aligned Aesthetics video edit" loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="video-card-info">
+              <div class="video-card-author">Edited by <strong>Rasik Kumar</strong></div>
+              <span class="video-card-badge">Edit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FIX #2: Web Dev — direct links to each site, no portfolio popup detour ── -->
+      <div style="margin-top:100px;">
+        <h3 class="section-title av-reveal" style="font-size:clamp(24px,3vw,34px); margin-bottom:6px;">Web <em>Development</em></h3>
+        <p style="color:rgba(245,237,214,0.45); font-size:12px; letter-spacing:0.05em; margin-bottom:10px;">Click a project to visit the live site directly.</p>
+
+        <div class="webdev-grid" id="webdevShowcase">
+          <a class="webdev-card" href="http://littlesparkle.is-great.net" target="_blank" rel="noopener">
+            <div class="webdev-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <div class="webdev-card-name">Little Sparkle</div>
+            <div class="webdev-card-author">Made by Ankita Jain</div>
+            <span class="webdev-card-cta">Visit Live Site →</span>
+          </a>
+
+          <a class="webdev-card" href="https://azyrastudio-07.tiiny.site" target="_blank" rel="noopener">
+            <div class="webdev-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <div class="webdev-card-name">Azyra Studio</div>
+            <div class="webdev-card-author">Made by Ankita Jain</div>
+            <span class="webdev-card-cta">Visit Live Site →</span>
+          </a>
+
+          <a class="webdev-card" href="https://portfolio-kappa-flax-65.vercel.app/" target="_blank" rel="noopener">
+            <div class="webdev-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <div class="webdev-card-name">Sanjay's Portfolio</div>
+            <div class="webdev-card-author">Made by Sanjay Jakkani</div>
+            <span class="webdev-card-cta">Visit Live Site →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- App Design — kept as a small section using the existing modal pattern -->
+      <div style="margin-top:100px;">
+        <h3 class="section-title av-reveal" style="font-size:clamp(24px,3vw,34px); margin-bottom:6px;">App <em>Design</em></h3>
+        <p style="color:rgba(245,237,214,0.45); font-size:12px; letter-spacing:0.05em; margin-bottom:10px;">Click to view in full size.</p>
+        <div class="graphics-showcase" id="appShowcase" style="grid-template-columns:repeat(2,1fr); max-width:560px;">
+          <div class="graphics-card" data-img="image5.jpeg" data-name="App UI Showcase" data-category="Mobile App Design">
+            <div class="graphics-card-media">
+              <img src="image5.jpeg" alt="App Showcase Sample" loading="lazy"/>
+              <div class="graphics-card-zoom-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </div>
+            </div>
+            <div class="graphics-card-info">
+              <div class="graphics-card-name">App UI Showcase</div>
+              <div class="graphics-card-meta"><span>Mobile App Design</span><span class="dot"></span><span class="author">Sanjay Jakkani</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <div id="graphics-popup" class="portfolio-popup-modal">
-    <div class="modal-content-wrap">
-      <button class="modal-close-btn" onclick="closePortfolioPopup('graphics-popup')">&times;</button>
-      <div class="modal-title">Graphic Design <em>Creations</em></div>
-      <div class="popup-sample-grid">
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
-          <div>
-            <div class="popup-sample-media"><img src="3.png" alt="Website design sample"/></div>
-            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('3.png', 'Website design sample')">Open Image</button>
-          </div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
-          <div>
-            <div class="popup-sample-media"><img src="4.png" alt="Poster design sample"/></div>
-            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('4.png', 'Poster design sample')">Open Image</button>
-          </div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
-          <div>
-            <div class="popup-sample-media"><img src="layout.png" alt="Instagram layout sample"/></div>
-            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('layout.png', 'Instagram layout sample')">Open Image</button>
-          </div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Neha Mhaskar</div>
-          <div>
-            <div class="popup-sample-media"><img src="logo desgin.png" alt="Logo design sample"/></div>
-            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('logo desgin.png', 'Logo design sample')">Open Image</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="video-popup" class="portfolio-popup-modal">
-    <div class="modal-content-wrap">
-      <button class="modal-close-btn" onclick="closePortfolioPopup('video-popup')">&times;</button>
-      <div class="modal-title">Video Editing <em>Showcase Links</em></div>
-      <div class="popup-sample-grid">
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>EDITED BY:</strong><br/>Mr.Sanjay Jakkani</div>
-          <div class="popup-sample-media"><a href="https://youtube.com/shorts/GPM3jwXNW4I?si=vy-wB3wIYrU5ypAt" target="_blank" class="popup-web-link">WATCH ON YOUTUBE ↗</a></div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>EDITED BY:</strong><br/>Mr.Sanjay Jakkani</div>
-          <div class="popup-sample-media"><a href="https://youtube.com/shorts/Qn9N_iXoBig?si=t-iTGb-dca6N0jn9q" target="_blank" class="popup-web-link">WATCH ON YOUTUBE ↗</a></div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>EDITED BY:</strong><br/>Mr.Rasik Kumar</div>
-          <div class="popup-sample-media"><a href="https://youtu.be/puhYHpe-W-U?si=X4uYCu9VyV6IqiH7" target="_blank" class="popup-web-link">WATCH ON YOUTUBE ↗</a></div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>EDITED BY:</strong><br/>Mr.Rasik Kumar</div>
-          <div class="popup-sample-media"><a href="https://youtu.be/CqvYPSZCoGg?si=UUAktKmdse37BVNg" target="_blank" class="popup-web-link">WATCH ON YOUTUBE ↗</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="web-popup" class="portfolio-popup-modal">
-    <div class="modal-content-wrap">
-      <button class="modal-close-btn" onclick="closePortfolioPopup('web-popup')">&times;</button>
-      <div class="modal-title">Web Development <em>Portfolios</em></div>
-      <div class="popup-sample-grid">
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Miss Ankita Jain</div>
-          <div class="popup-sample-media"><a href="http://littlesparkle.is-great.net" target="_blank" class="popup-web-link">VISIT PORTFOLIO ↗</a></div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Miss Ankita Jain</div>
-          <div class="popup-sample-media"><a href="https://azyrastudio-07.tiiny.site" target="_blank" class="popup-web-link">VISIT PORTFOLIO ↗</a></div>
-        </div>
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Mr.Sanjay Jakkani</div>
-          <div class="popup-sample-media"><a href="https://portfolio-kappa-flax-65.vercel.app/" target="_blank" class="popup-web-link">VISIT PORTFOLIO ↗</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="app-popup" class="portfolio-popup-modal">
-    <div class="modal-content-wrap">
-      <button class="modal-close-btn" onclick="closePortfolioPopup('app-popup')">&times;</button>
-      <div class="modal-title">App Design &amp; <em>UI Samples</em></div>
-      <div class="popup-sample-grid">
-        <div class="popup-sample-item">
-          <div class="popup-sample-info"><strong>MADE BY:</strong><br/>Mr.Sanjay Jakkani</div>
-          <div>
-            <div class="popup-sample-media"><img src="image5.jpeg" alt="App Showcase Sample"/></div>
-            <button class="popup-open-image" type="button" onclick="openGalleryLightbox('image5.jpeg', 'App Showcase Sample')">Open Image</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- Image Lightbox (shared by Graphics + App Design grids) -->
   <div id="imageLightbox" class="image-lightbox" onclick="closeGalleryLightbox(event)">
     <div class="image-lightbox-content">
       <div class="image-lightbox-header">
-        <span id="imageLightboxTitle">Image Preview</span>
+        <div>
+          <span id="imageLightboxTitle">Image Preview</span>
+          <small id="imageLightboxCategory"></small>
+        </div>
         <button class="image-lightbox-close" type="button" aria-label="Close image preview" onclick="closeGalleryLightbox()">&times;</button>
       </div>
       <div class="image-lightbox-frame">
@@ -755,7 +1011,7 @@
 
   <section id="contact">
     <div class="contact-bg-glow"></div>
-    <div class="contact-inner reveal">
+    <div class="contact-inner av-reveal">
       <span class="section-label">Let's Create Together</span>
       <h2 class="section-title contact-title">Ready to <em>Align</em><br/>Your Brand?</h2>
       <p class="contact-desc">Whether you have a clear vision or just a spark of an idea — we'd love to hear from you. Let's build something beautiful together.</p>
@@ -821,10 +1077,10 @@
   <footer>
     <div class="aligned-footer-container">
       <div class="footer-left-block">
-        © 2026 Aligned Asthetics. All rights reserved.
+        © 2026 Aligned Aesthetics. All rights reserved.
       </div>
       <div class="footer-center-block" style="padding-right: 30px; padding-left: 30px;">
-        Aligned Asthetics
+        Aligned Aesthetics
       </div>
       <div class="footer-right-block">
         Founder: Mr.Anubhav Singh | <a href="tel:+919129271121">+91 9129271121</a>
@@ -833,26 +1089,22 @@
   </footer>
 
   <script>
-    function openPortfolioPopup(modalId) {
-      const targetModal = document.getElementById(modalId);
-      if (targetModal) {
-        targetModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function openGalleryLightbox(imageSrc, title) {
+    /* ════════════════════════════════
+       Graphics / App Design lightbox
+       (replaces old multi-modal popup logic for these two sections only)
+    ════════════════════════════════ */
+    function openGalleryLightbox(imageSrc, title, category) {
       const lightbox = document.getElementById('imageLightbox');
       const image = document.getElementById('imageLightboxImg');
       const imageTitle = document.getElementById('imageLightboxTitle');
+      const imageCategory = document.getElementById('imageLightboxCategory');
 
-      if (!lightbox || !image || !imageTitle) {
-        return;
-      }
+      if (!lightbox || !image || !imageTitle) return;
 
       image.src = imageSrc;
       image.alt = title || 'Gallery preview';
       imageTitle.textContent = title || 'Image Preview';
+      if (imageCategory) imageCategory.textContent = category || '';
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -861,35 +1113,70 @@
       if (event && event.target && event.target.id !== 'imageLightbox' && event.target.classList && !event.target.classList.contains('image-lightbox-close')) {
         return;
       }
-
       const lightbox = document.getElementById('imageLightbox');
       const image = document.getElementById('imageLightboxImg');
-
-      if (lightbox) {
-        lightbox.classList.remove('open');
-      }
-
-      if (image) {
-        image.src = '';
-      }
-
+      if (lightbox) lightbox.classList.remove('open');
+      if (image) image.src = '';
       document.body.style.overflow = 'auto';
     }
 
-    function closePortfolioPopup(modalId) {
-      const targetModal = document.getElementById(modalId);
-      if (targetModal) {
-        targetModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-    }
+    // Wire up clicks on every .graphics-card (Graphics + App Design sections)
+    document.querySelectorAll('.graphics-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var img = card.getAttribute('data-img');
+        var name = card.getAttribute('data-name');
+        var cat = card.getAttribute('data-category');
+        openGalleryLightbox(img, name, cat);
+      });
+    });
 
-    window.onclick = function(event) {
-      if (event.target.classList.contains('portfolio-popup-modal')) {
-        event.target.style.display = 'none';
-        document.body.style.overflow = 'auto';
+    // Escape key closes lightbox
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeGalleryLightbox({ target: { id: 'imageLightbox' } });
+    });
+
+    /* ════════════════════════════════
+       Premium scroll reveal for .av-reveal elements
+       (separate, additive observer — does not touch script.js's
+       existing .reveal / .process-step observer)
+    ════════════════════════════════ */
+    (function () {
+      var avTargets = document.querySelectorAll(
+        '.av-reveal, .graphics-card, .webdev-card, .video-card'
+      );
+      if (!('IntersectionObserver' in window)) {
+        avTargets.forEach(function (el) {
+          el.classList.add('av-in', 'in-view');
+        });
+        return;
       }
-    }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('av-in', 'in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      avTargets.forEach(function (el) {
+        // stagger graphics/webdev/video cards by DOM order within their grid
+        obs.observe(el);
+      });
+
+      // Add small staggered delays to grid cards based on index within parent
+      function staggerGrid(selector) {
+        document.querySelectorAll(selector).forEach(function (grid) {
+          Array.prototype.forEach.call(grid.children, function (child, i) {
+            child.style.transitionDelay = (i * 0.08) + 's';
+          });
+        });
+      }
+      staggerGrid('#graphicsShowcase');
+      staggerGrid('#appShowcase');
+      staggerGrid('#webdevShowcase');
+      staggerGrid('#videoShowcase');
+    })();
   </script>
   <script src="script.js"></script>
 </body>

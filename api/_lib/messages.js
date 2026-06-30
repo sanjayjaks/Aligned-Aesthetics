@@ -31,7 +31,7 @@ const MESSAGE_STORE_FILE = path.join(MESSAGE_STORE_DIR, 'messages.json');
 
 async function ensureLocalStore() {
   if (useMemoryFallback) return false;
-  
+
   try {
     await fs.mkdir(MESSAGE_STORE_DIR, { recursive: true });
     try {
@@ -77,7 +77,7 @@ async function writeLocalStore(messages) {
 
 export async function saveClientMessage(message) {
   const redis = getRedisClient();
-  
+
   if (!redis) {
     const messages = await readLocalStore();
     messages.unshift(message);
@@ -95,7 +95,7 @@ export async function saveClientMessage(message) {
 
 export async function loadClientMessages() {
   const redis = getRedisClient();
-  
+
   if (!redis) {
     return await readLocalStore();
   }

@@ -224,7 +224,7 @@
       }
 
       form.reset();
-      status.textContent = "We\'ll reach you soon.";
+      status.textContent = "We'll reach you soon.";
       status.dataset.state = 'success';
     } catch (error) {
       status.textContent = error.message || 'Something went wrong. Please try again.';
