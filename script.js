@@ -1,29 +1,30 @@
 /* ============================================================
    ALIGNED AESTHETICS — script.js
    Handles: Custom Cursor · Nav Scroll · Marquee ·
-            Mandala BG Tiles · Scroll Reveal ·
-            Click-to-Play Video Samples · Image Lightbox ·
-            Contact Form Submission
+            Mandala BG Tiles · Scroll Reveal
    ============================================================ */
 
 /* ── 1. CUSTOM CURSOR ── */
 (function initCursor() {
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('cursorRing');
-  if (!cursor || !ring) return;
 
-  let mouseX = 0, mouseY = 0;
-  let ringX  = 0, ringY  = 0;
+  let mouseX = 0, mouseY = 0;   // actual mouse position
+  let ringX  = 0, ringY  = 0;   // lagging ring position
 
+  // Track real mouse position
   document.addEventListener('mousemove', function (e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
 
+  // Animate cursor dot (instant) and ring (lagging)
   function animateCursor() {
+    // Dot follows instantly
     cursor.style.left = mouseX + 'px';
     cursor.style.top  = mouseY + 'px';
 
+    // Ring lerps toward mouse
     ringX += (mouseX - ringX) * 0.12;
     ringY += (mouseY - ringY) * 0.12;
     ring.style.left = ringX + 'px';
@@ -33,6 +34,7 @@
   }
   animateCursor();
 
+  // Scale ring on interactive elements
   document.querySelectorAll('a, button').forEach(function (el) {
     el.addEventListener('mouseenter', function () {
       ring.style.transform   = 'translate(-50%, -50%) scale(1.6)';
@@ -51,7 +53,6 @@
 /* ── 2. NAVBAR — SOLID ON SCROLL ── */
 (function initNavScroll() {
   var navbar = document.getElementById('navbar');
-  if (!navbar) return;
 
   window.addEventListener('scroll', function () {
     if (window.scrollY > 60) {
@@ -79,6 +80,7 @@
   var track = document.getElementById('marqueeTrack');
   if (!track) return;
 
+  // Duplicate for seamless infinite scroll
   var allItems = services.concat(services);
 
   allItems.forEach(function (text) {
@@ -95,6 +97,7 @@
   var bgGrid = document.getElementById('mandala-bg');
   if (!bgGrid) return;
 
+  // Speeds cycle through 5 values (25s → 45s)
   for (var i = 0; i < 20; i++) {
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 100 100');
@@ -102,9 +105,10 @@
     var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.setAttribute('transform', 'translate(50,50)');
 
+    // Alternate clockwise / counter-clockwise for visual variety
     var direction = i % 2 === 0 ? '' : ' reverse';
     var duration  = (25 + (i % 5) * 5) + 's';
-    g.style.animation       = 'rotateSlow ' + duration + ' linear infinite' + direction;
+    g.style.animation      = 'rotateSlow ' + duration + ' linear infinite' + direction;
     g.style.transformOrigin = 'center';
 
     g.innerHTML = [
@@ -135,67 +139,24 @@
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target);   // fire once only
       }
     });
   }, options);
 
+  // Reveal generic elements
   document.querySelectorAll('.reveal').forEach(function (el) {
     observer.observe(el);
   });
 
+  // Process steps slide in from left
   document.querySelectorAll('.process-step').forEach(function (el) {
     observer.observe(el);
   });
 })();
 
 
-function playVideoSample(button, videoId, title) {
-  var container = button.closest('.panel-sample-media');
-  if (!container) return;
-
-  container.innerHTML = `
-    <iframe
-      width="100%"
-      height="100%"
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
-      title="${title || 'Video'}"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  `;
-}
-
-
-/* ── 7. IMAGE LIGHTBOX (opens inline on the page, never a new window) ── */
-function openGalleryLightbox(imageSrc, title) {
-  const lightbox = document.getElementById('imageLightbox');
-  const image = document.getElementById('imageLightboxImg');
-  const imageTitle = document.getElementById('imageLightboxTitle');
-  if (!lightbox || !image || !imageTitle) return;
-
-  image.src = imageSrc;
-  image.alt = title || 'Gallery preview';
-  imageTitle.textContent = title || 'Image Preview';
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeGalleryLightbox(event) {
-  if (event && event.target && event.target.id !== 'imageLightbox' &&
-      event.target.classList && !event.target.classList.contains('image-lightbox-close')) {
-    return;
-  }
-  const lightbox = document.getElementById('imageLightbox');
-  const image = document.getElementById('imageLightboxImg');
-  if (lightbox) lightbox.classList.remove('open');
-  if (image) image.src = '';
-  document.body.style.overflow = 'auto';
-}
-
-
-/* ── 8. CONTACT FORM SUBMISSION ── */
+/* ── 6. CONTACT FORM SUBMISSION ── */
 (function initContactForm() {
   var form = document.getElementById('clientRequestForm');
   var status = document.getElementById('requestFormStatus');
@@ -224,10 +185,13 @@ function closeGalleryLightbox(event) {
     status.dataset.state = 'pending';
 
     var submitButton = form.querySelector('button[type="submit"]');
-    if (submitButton) submitButton.disabled = true;
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
 
     try {
       var payload = {};
+
       new FormData(form).forEach(function (value, key) {
         payload[key] = value;
       });
@@ -235,7 +199,9 @@ function closeGalleryLightbox(event) {
       try {
         var response = await fetch(form.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify(payload)
         });
 
@@ -264,7 +230,9 @@ function closeGalleryLightbox(event) {
       status.textContent = error.message || 'Something went wrong. Please try again.';
       status.dataset.state = 'error';
     } finally {
-      if (submitButton) submitButton.disabled = false;
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
     }
   });
 })();
